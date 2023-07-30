@@ -1,0 +1,6 @@
+CREATE TABLE clientes (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    cnpj INTEGER NOT NULL
+
+)
