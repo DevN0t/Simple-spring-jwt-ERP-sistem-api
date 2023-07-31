@@ -41,7 +41,7 @@ public class ClientController {
         if (optionalClientes.isPresent()){
             Clientes clientes = optionalClientes.get();
             clientes.setName(data.name());
-            clientes.setCnpj(data.cnpj());
+            clientes.setCpf(data.cpf());
             return ResponseEntity.ok(clientes);
 
         }else {
