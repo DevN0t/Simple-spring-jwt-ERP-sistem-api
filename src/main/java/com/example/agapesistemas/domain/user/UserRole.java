@@ -1,7 +1,7 @@
 package com.example.agapesistemas.domain.user;
 
 public enum UserRole {
-    ADMIN("ADMIN"),
+    ADMIN("admin"),
     USER("user");
 
     private String role;
