@@ -20,4 +20,7 @@ public class Clientes {
         this.name = requestClient.name();
         this.cnpj = requestClient.cnpj();
     }
+
+    public Clientes() {
+    }
 }
