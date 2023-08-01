@@ -27,7 +27,7 @@ public class Clientes {
     private Long id;
 
 
-    private String name;
+    private String cliente_name;
     private String cpf;
     private String rg;
 
@@ -55,7 +55,7 @@ public class Clientes {
 
 
     public Clientes(RequestClient requestClient) {
-        this.name = requestClient.name();
+        this.cliente_name = requestClient.cliente_name();
         this.cpf = requestClient.cpf();
         this.rg = requestClient.rg();
         this.borndate = requestClient.borndate();

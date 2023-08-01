@@ -34,22 +34,26 @@ public class ClientController {
         repository.save(newcliente);
         return ResponseEntity.ok().build();
     }
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity updateClientes(@RequestBody @Valid RequestClientUpdate data){
-        Optional<Clientes> optionalClientes = repository.findById(String.valueOf(data.id()));
-        if (optionalClientes.isPresent()){
-            Clientes clientes = optionalClientes.get();
-            clientes.setName(data.name());
-            clientes.setCpf(data.cpf());
-            return ResponseEntity.ok(clientes);
+    public ResponseEntity<Clientes> updateCliente(@PathVariable Long id, @RequestBody Clientes clienteAtualizado) {
+        Clientes clienteExistente = repository.findById(id).orElse(null);
+        if (clienteExistente != null) {
+            clienteExistente.setCliente_name(clienteAtualizado.getCliente_name());
+            clienteExistente.setCpf(clienteAtualizado.getCpf());
+            Clientes clienteSalvo = repository.save(clienteExistente);
 
-        }else {
-            throw new EntityNotFoundException();
+            return ResponseEntity.ok(clienteSalvo);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
+
+
+
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteClientes(@PathVariable String id){
+    public ResponseEntity deleteClientes(@PathVariable Long id){
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }

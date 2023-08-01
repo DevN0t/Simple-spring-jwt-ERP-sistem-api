@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record ProductRequestDTO(
         @NotBlank
-        String name
+        String product_name
 ) {
 
 }

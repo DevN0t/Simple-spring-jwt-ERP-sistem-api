@@ -11,7 +11,7 @@ public record RequestClientUpdate(
         Long id,
 
         @NotBlank
-        String name,
+        String cliente_name,
         @NotNull
         String cpf,
         @NotBlank String  rg,
@@ -21,7 +21,7 @@ public record RequestClientUpdate(
 
         @NotBlank
         String  logradouro,
-
+        @NotBlank
         String  complemento,
 
         @NotBlank

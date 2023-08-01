@@ -1,6 +1,6 @@
 CREATE TABLE clientes (
                           id SERIAL PRIMARY KEY,
-                          name VARCHAR(40) NOT NULL,
+                          cliente_name VARCHAR(40) NOT NULL,
                           cpf VARCHAR(14) NOT NULL,
                           rg VARCHAR(17) NOT NULL,
                           borndate DATE,

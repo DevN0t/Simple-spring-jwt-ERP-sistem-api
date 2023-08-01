@@ -1,14 +1,12 @@
 package com.example.agapesistemas.domain.clientes;
 
+import com.example.agapesistemas.domain.product.Product;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
-import java.io.Serial;
 import java.sql.Date;
 
-public record RequestClient(
-        Long id,
+public record ClienteResponseDTO (
+        String id,
         @NotBlank
 
         String cliente_name,
@@ -39,7 +37,5 @@ public record RequestClient(
         @NotBlank
         String celular,
         String observacao
-
-
 ) {
 }
