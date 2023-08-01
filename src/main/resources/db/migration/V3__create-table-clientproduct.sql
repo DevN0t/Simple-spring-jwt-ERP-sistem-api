@@ -1,6 +1,5 @@
 CREATE TABLE clientes (
-                          id TEXT PRIMARY KEY NOT NULL UNIQUE,
-                          codigo_cliente SERIAL,
+                          id SERIAL PRIMARY KEY,
                           name VARCHAR(40) NOT NULL,
                           cpf VARCHAR(14) NOT NULL,
                           rg VARCHAR(17) NOT NULL,

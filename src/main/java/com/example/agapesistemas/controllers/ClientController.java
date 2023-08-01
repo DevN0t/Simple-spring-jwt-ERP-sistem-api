@@ -37,7 +37,7 @@ public class ClientController {
     @PutMapping
     @Transactional
     public ResponseEntity updateClientes(@RequestBody @Valid RequestClientUpdate data){
-        Optional<Clientes> optionalClientes = repository.findById(data.id());
+        Optional<Clientes> optionalClientes = repository.findById(String.valueOf(data.id()));
         if (optionalClientes.isPresent()){
             Clientes clientes = optionalClientes.get();
             clientes.setName(data.name());

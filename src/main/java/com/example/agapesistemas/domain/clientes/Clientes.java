@@ -4,28 +4,36 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.aspectj.weaver.ast.Var;
-import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 @Table(name="clientes")
 @Entity(name="clientes")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@Component
+
 public class Clientes {
+
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer codigo_cliente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
     private String name;
     private String cpf;
     private String rg;
-    private String borndate;
+
+
+    private Date borndate;
+
     private String logradouro;
     private String complemento;
     private String bairro;
@@ -35,8 +43,18 @@ public class Clientes {
     private String telefone;
     private String celular;
     private String observacao;
-    public Clientes(RequestClient requestClient){
-        this.codigo_cliente = requestClient.codigo_cliente();
+
+
+
+
+
+
+    public Clientes() {
+
+    }
+
+
+    public Clientes(RequestClient requestClient) {
         this.name = requestClient.name();
         this.cpf = requestClient.cpf();
         this.rg = requestClient.rg();
@@ -49,9 +67,8 @@ public class Clientes {
         this.uf = requestClient.uf();
         this.telefone = requestClient.telefone();
         this.celular = requestClient.celular();
-        this.observacao = requestClient.obervacao();
+        this.observacao = requestClient.observacao();
+
     }
 
-    public Clientes() {
-    }
 }

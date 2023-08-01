@@ -5,48 +5,46 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
 import java.io.Serial;
-import java.util.Date;
+import java.sql.Date;
 
 public record RequestClient(
-        String id,
-    Integer codigo_cliente,
 
-    @NotBlank
+        Long id,
+
+        @NotBlank
         String name,
-    @NotNull
+
+        @NotNull
         String cpf,
-        @NotBlank String  rg,
+        @NotBlank String rg,
 
 
-        String borndate,
-
-        @NotBlank
-        String  logradouro,
+        Date borndate,
 
         @NotBlank
-        String  complemento,
+        String logradouro,
+
+        String complemento,
 
         @NotBlank
-        String  bairro,
+        String bairro,
 
         @NotBlank
-        String  cep,
+        String cep,
 
         @NotBlank
-        String  cidade,
+        String cidade,
 
         @NotBlank
-        String uf ,
-        @NotBlank
-        String  telefone,
+        String uf,
+
+        String telefone,
 
         @NotBlank
-        String  celular,
+        String celular,
 
-        @NotBlank
-        String  obervacao
-
+        String observacao
 
 
-
-    ){}
+) {
+}

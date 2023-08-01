@@ -1,14 +1,47 @@
 package com.example.agapesistemas.domain.clientes;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
 import java.io.Serial;
+import java.sql.Date;
 
 public record RequestClientUpdate(
-        String id,
+        Long id,
 
-        Integer codigo_cliente,
+        @NotBlank
         String name,
-        String cpf
+        @NotNull
+        String cpf,
+        @NotBlank String  rg,
+
+
+        Date borndate,
+
+        @NotBlank
+        String  logradouro,
+
+        String  complemento,
+
+        @NotBlank
+        String  bairro,
+
+        @NotBlank
+        String  cep,
+
+        @NotBlank
+        String  cidade,
+
+        @NotBlank
+        String uf ,
+
+        String  telefone,
+
+        @NotBlank
+        String  celular,
+
+        String  observacao
+
 ) {
 }
