@@ -16,15 +16,4 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Clientes cliente;
-
-    @ManyToMany
-    @JoinTable(
-            name = "pedidos_produtos",
-            joinColumns = @JoinColumn(name = "pedido_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id")
-    )
-    private List<Product> produtos;
 }

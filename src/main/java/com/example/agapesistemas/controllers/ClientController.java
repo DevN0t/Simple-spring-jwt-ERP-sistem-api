@@ -14,18 +14,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/agapesistemas")
+@RequestMapping("client")
 
 
 public class ClientController {
     @Autowired
     private ClientesRepository repository;
-    @GetMapping
+
+    @CrossOrigin(maxAge = 10, allowedHeaders = "*",origins = "http://localhost:5173")
+    @GetMapping("/visualize")
     public ResponseEntity getAllClients(){
         var allClients = repository.findAll();
         return ResponseEntity.ok(allClients);
+
     }
-    @PostMapping
+    @PostMapping("/cadastro")
     public ResponseEntity registerClient(@RequestBody @Valid RequestClient data){
         Clientes newcliente = new Clientes(data);
 

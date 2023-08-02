@@ -29,7 +29,13 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/agapesistemas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/order").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/product/cadastro").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/product/visualize").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/client/cadastro").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/client/visualize").permitAll()
+
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

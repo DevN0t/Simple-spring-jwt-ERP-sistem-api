@@ -17,14 +17,14 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public ResponseEntity postProduct(@RequestBody @Valid ProductRequestDTO body){
         Product newProduct = new Product(body);
 
         this.productRepository.save(newProduct);
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    @GetMapping("/visualize")
     public ResponseEntity getAllProducts(){
         List<ProductResponseDTO> productList = this.productRepository.findAll().stream().map(ProductResponseDTO::new).toList();
 
