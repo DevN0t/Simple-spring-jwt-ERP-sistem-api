@@ -1,10 +1,12 @@
 package com.example.agapesistemas.infra.security;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,13 +29,15 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/order").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/product/cadastro").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/product/visualize").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/client/cadastro").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/product/cadastro").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/product/visualize").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/client/cadastro").permitAll()
                         .requestMatchers(HttpMethod.GET, "/client/visualize").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+
+
 
 
                         .anyRequest().authenticated()

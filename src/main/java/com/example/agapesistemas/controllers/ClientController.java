@@ -21,23 +21,23 @@ public class ClientController {
     @Autowired
     private ClientesRepository repository;
 
-    @CrossOrigin(maxAge = 10, allowedHeaders = "*",origins = "http://localhost:5173")
+    //@CrossOrigin(maxAge = 10)
     @GetMapping("/visualize")
     public ResponseEntity getAllClients(){
         var allClients = repository.findAll();
         return ResponseEntity.ok(allClients);
-
     }
+
+
+
     @PostMapping("/cadastro")
     public ResponseEntity registerClient(@RequestBody @Valid RequestClient data){
         Clientes newcliente = new Clientes(data);
-
-
         System.out.println(data);
         repository.save(newcliente);
         return ResponseEntity.ok().build();
     }
-    @PutMapping("/{id}")
+    @PutMapping("/atualizar/{id}")
     @Transactional
     public ResponseEntity<Clientes> updateCliente(@PathVariable Long id, @RequestBody Clientes clienteAtualizado) {
         Clientes clienteExistente = repository.findById(id).orElse(null);
@@ -47,9 +47,8 @@ public class ClientController {
             Clientes clienteSalvo = repository.save(clienteExistente);
 
             return ResponseEntity.ok(clienteSalvo);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+            return ResponseEntity.notFound().build();
     }
 
 

@@ -17,13 +17,16 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @CrossOrigin(maxAge = 10, allowedHeaders = "*",origins = "http://localhost:5173")
     @PostMapping("/cadastro")
-    public ResponseEntity postProduct(@RequestBody @Valid ProductRequestDTO body){
-        Product newProduct = new Product(body);
+    public ResponseEntity postProduct(@RequestBody @Valid ProductRequestDTO data){
+        Product newProduct = new Product(data);
 
         this.productRepository.save(newProduct);
         return ResponseEntity.ok().build();
     }
+
+    @CrossOrigin(maxAge = 10, allowedHeaders = "*",origins = "http://localhost:5173")
     @GetMapping("/visualize")
     public ResponseEntity getAllProducts(){
         List<ProductResponseDTO> productList = this.productRepository.findAll().stream().map(ProductResponseDTO::new).toList();
